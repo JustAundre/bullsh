@@ -109,7 +109,7 @@ passwd_check() {
 			echo "rbash: ${BASH_REMATCH[1]}: readonly variable"
 			log fail "${input}"
 			return 2
-		elif type -t "${cmd}" &> /devnull; then
+		elif type -t "${cmd}" &>/devnull; then
 			echo "rbash: ${cmd}: Permission denied"
 			log fail "${input}"
 			return 2
