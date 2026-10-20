@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
+
+
+
+
 #
 # Environment Setup
 #
 # Source configuration
 source "$(dirname "${0}")/config.sh" || exit 1
+
+
+
+
 
 #
 # The Shell
@@ -124,6 +132,10 @@ passwd_check() {
 #
 # Prevent changing of core logic
 declare -rf log handover hash passwd_check
+
+
+
+
 
 #
 # The Honey
