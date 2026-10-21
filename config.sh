@@ -63,7 +63,7 @@ declare -Ar config=(
 declare -rx TMOUT=1
 declare -r python_hashing_logic="import hashlib, sys; h = sys.stdin.read().encode(); exec('for _ in range(${config[hashing_rounds]}):\n    h = hashlib.sha512(h).hexdigest().encode()'); print(h.decode())"
 #
-# Which layer # start at
+# Which layer # to start at
 # Whether the script stops checking for the password (y/n)
 # The amount of login attempts to start with
 layer_at=1
@@ -75,8 +75,8 @@ else
 	declare -x PS1="[${USER}@${HOSTNAME%%.*} ~]$ "
 fi
 #
-# NOT read as:			"if TTY variable = result from TTY command",
-# Correctly read as:	"if tty command is successful (whose result happens to be assigned to the TTY var)".
+# NOT read as:       "if TTY variable = result from TTY command",
+# Correctly read as: "if tty command is successful (whose result happens to be assigned to the TTY variable)".
 if TTY="$(tty)"; then
 	TTY="${TTY#*/*/}"
 	SSH_TTY="${TTY}"
