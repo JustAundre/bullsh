@@ -27,7 +27,7 @@ declare -r hashes=(
 )
 #
 # General BullSH configurations
-declare -Ar config=(
+declare -A -r config=(
 	# JournalCTL log tag
 	[log_tag]=bullsh
 	#
@@ -83,7 +83,7 @@ if TTY="$(tty)"; then
 else
 	TTY="${SSH_TTY}"
 fi
-declare -rx TTY SSH_TTY
+declare -r -x TTY SSH_TTY
 #
 # Dynamic handling for SSH_CONNECTION/ip_from
 [[ -z ${SSH_CLIENT} ]] && SSH_CLIENT=Local
