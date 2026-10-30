@@ -60,7 +60,7 @@ declare -A -r config=(
 #
 # TMOUT kills *real* shells after 1 second of inactivity. Acts as a safety net in the event of a command injection vuln.
 # Python logic to use for quick hashing
-declare -rx TMOUT=1
+declare -r -x TMOUT=1
 declare -r python_hashing_logic="import hashlib, sys; h = sys.stdin.read().encode(); exec('for _ in range(${config[hashing_rounds]}):\n    h = hashlib.sha512(h).hexdigest().encode()'); print(h.decode())"
 #
 # Which layer # to start at

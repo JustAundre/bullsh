@@ -131,7 +131,7 @@ passwd_check() {
 }
 #
 # Prevent changing of core logic
-declare -rf log handover hash passwd_check
+declare -r -f log handover hash passwd_check
 
 
 
@@ -145,7 +145,7 @@ while true; do
 	case "${layer_at}" in
 	1)
 		# L1 | False Terminal
-		read -t "${config[timeout]}" -erp "${PS1}" -n "$((config[stdin_cap] + 1))" input || exit 1
+		read -r -e -t "${config[timeout]}" -p "${PS1}" -n "$((config[stdin_cap] + 1))" input || exit 1
 		#
 		# Check the input & move into next layer if correct.
 		passwd_check || continue
@@ -159,7 +159,7 @@ while true; do
 		;;
 	2)
 		# L2 | Silence
-		read -t "${config[timeout]}" -ern "$((config[stdin_cap] + 1))" input || exit 1
+		read -r -e -t "${config[timeout]}" -n "$((config[stdin_cap] + 1))" input || exit 1
 		#
 		# Check the input & move into next layer...
 		# Or pass into real shell if no more layers.
@@ -169,7 +169,7 @@ while true; do
 		;;
 	3)
 		# L3 | Silence (Again)
-		read -t "${config[timeout]}" -ern "$((config[stdin_cap] + 1))" input || exit 1
+		read -r -e -t "${config[timeout]}" -n "$((config[stdin_cap] + 1))" input || exit 1
 		#
 		# Check the input & move into next layer or pass into real shell if no more layers.
 		passwd_check || continue
